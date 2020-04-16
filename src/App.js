@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import Table from './components/Table'
 import Form from './components/Form';
+import List from './components/List';
+import SecondForm from './components/secondForm';
 
 class App extends Component {
   state = {
@@ -23,7 +25,16 @@ class App extends Component {
       <div className="container-fluid">
         <Form handlesubmit={this.handlesubmit}/>
         <Table characterData={this.state.characters} removeIndex={this.removeIndex}/>
-        
+
+        <div>
+          <h1>Second Project</h1>
+          <h2>Articles</h2>
+          <List/>
+          <div>
+            <h2>Add a New Article</h2>
+            <SecondForm/>
+          </div>
+        </div>
       </div>
     )
   }

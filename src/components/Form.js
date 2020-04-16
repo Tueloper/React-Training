@@ -28,27 +28,27 @@ class Form extends Component {
           <div className="row">
         <form onSubmit={this.onSubmit}>
 
-            <div className="col-md-5">
+
             <input
             type="text"
             name="name"
             id="name"
+            className="form-control"
             value={name}
             onChange={this.handleChange}
           />
-            </div>
-            <div className="col-md-5">
+
             <input
             type="text"
+            className="form-control"
             name="job"
             id="name"
             value={job}
             onChange={this.handleChange}
           />
-            </div>
-          <div className="col-md-2">
+
           <button className="btn btn-success btn-block">Submit</button>
-          </div>
+
 
         </form>
         </div>
