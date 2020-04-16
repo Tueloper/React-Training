@@ -22,9 +22,8 @@ class App extends Component {
     return (
       <div className="container-fluid">
         <Form handlesubmit={this.handlesubmit}/>
-
-          <Table characterData={this.state.characters} removeIndex={this.removeIndex}/>
-
+        <Table characterData={this.state.characters} removeIndex={this.removeIndex}/>
+        
       </div>
     )
   }
