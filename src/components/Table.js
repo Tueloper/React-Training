@@ -1,6 +1,26 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { removeTableIndex } from './../js/actions/index'
+
+const mapStateToProps = state => {
+  return { characters: state.characters }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    removeTableIndex: index => dispatch(removeTableIndex(index))
+  }
+};
 
 class Table extends Component {
+  constructor(props) {
+    super(props);
+    this.removeIndex = this.removeIndex.bind(this);
+  }
+
+  removeIndex = (index) => {
+    this.props.removeTableIndex(index)
+  };
 
   render() {
     const TableHeader = () => {
@@ -15,8 +35,8 @@ class Table extends Component {
       )
     };
 
-    const TableBody = ({ characterData, removeIndex }) => {
-      const rows = characterData.map((item, index) => {
+    const TableBody = () => {
+      const rows = this.props.characters.map((item, index) => {
         return (
           <tr key={index}>
           <td>{item.name}</td>
@@ -24,7 +44,7 @@ class Table extends Component {
           <td>
             <button
               className="btn btn-danger"
-              onClick = {() => removeIndex(index)}
+              onClick = {() => this.removeIndex(index)}
             >
               Delete
             </button>
@@ -40,10 +60,11 @@ class Table extends Component {
     return (
       <table className="table">
       <TableHeader />
-      <TableBody characterData={this.props.characterData} removeIndex={this.props.removeIndex}/>
+      <TableBody/>
     </table>
     )
   }
 }
+const connection = connect(mapStateToProps, mapDispatchToProps)(Table);
 
-export default Table
+export default connection;

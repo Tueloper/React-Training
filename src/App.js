@@ -9,22 +9,11 @@ class App extends Component {
     characters: []
   };
 
-  removeIndex = (index) => {
-    const { characters } = this.state;
-    this.setState({
-      characters: characters.filter((item, i) => i !== index )
-    })
-  };
-
-  handlesubmit = character => {
-    this.setState({ characters: [...this.state.characters, character]})
-  }
-
   render() {
     return (
       <div className="container-fluid">
-        <Form handlesubmit={this.handlesubmit}/>
-        <Table characterData={this.state.characters} removeIndex={this.removeIndex}/>
+        <Form/>
+        <Table/>
 
         <div>
           <h1>Second Project</h1>

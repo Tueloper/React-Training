@@ -1,12 +1,25 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
+import { addTable } from './../js/actions/index'
+
+function mapDispatchToProps(dispatch) {
+  return {
+    addTable: character => dispatch(addTable(character))
+  }
+};
 
 class Form extends Component {
-  initialState = {
-    name: '',
-    job: ''
-  }
+  constructor(props) {
+    super(props);
+    this.initialState = {
+      name: '',
+      job: ''
+    }
+    this.state = this.initialState;
 
-  state = this.initialState;
+    this.handleChange = this.handleChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
 
   handleChange = e => {
     const {name, value} = e.target;
@@ -17,7 +30,7 @@ class Form extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    this.props.handlesubmit(this.state);
+    this.props.addTable(this.state);
     this.setState(this.initialState)
   }
 
@@ -57,4 +70,9 @@ class Form extends Component {
   }
 }
 
-export default Form
+const formTable = connect(
+  null,
+  mapDispatchToProps
+)(Form);
+
+export default formTable;
